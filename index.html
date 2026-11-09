@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tour Guiding Dialogue & Etiquette Assessment</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Noto Sans Ethiopic for authentic Amharic script -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Ethiopic:wght@400;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans Ethiopic', 'sans-serif'],
+            ethiopic: ['Noto Sans Ethiopic', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Smooth transitions and custom scrollbar */
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      min-height: 100vh;
+      color: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 9999px;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 0.3; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .pulsing-audio {
+      animation: pulse-ring 2s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+  <!-- ================= TOP NAVIGATION / HEADER ================= -->
+  <header class="w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50 px-4 py-3 sm:px-6">
+    <div class="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <!-- Title & Badge -->
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-sky-400 flex items-center justify-center text-white shadow-lg shadow-indigo-500/20">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-sm sm:text-base font-bold text-white tracking-wide">Tour Guiding Dialogue & Etiquette</h1>
+          <p class="text-xs text-slate-400">Professional Assessment & Model Dialogue</p>
+        </div>
+      </div>
+
+      <!-- Controls: Narrator & Exact Timer Requested -->
+      <div class="flex items-center space-x-3 ml-auto">
+        <!-- British Voice Narrator Control -->
+        <button id="toggle-narration-btn" onclick="toggleNarratorMaster()" class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-slate-700 transition" title="Toggle British Accent Speech Narrator">
+          <span id="narrator-icon" class="flex h-2 w-2 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span id="narrator-label">Narrator (UK): ON</span>
+        </button>
+
+        <!-- EXACT Timer Code container specified by user: style preserved -->
+        <div id="timer" style="text-align: right; font-weight: bold; color: #e74c3c; padding: 10px;"> Time: 16m </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN QUIZ CONTAINER ================= -->
+  <main class="flex-grow max-w-4xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+
+    <!-- SCREEN 1: REGISTRATION & IDENTIFICATION -->
+    <div id="screen-intro" class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+          Official Hospitality Certification Test
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-4 mb-2">Student Verification & Briefing</h2>
+        <p class="text-sm sm:text-base text-slate-400">
+          Welcome to the Tour Guiding Dialogue & Etiquette Assessment. This test contains 16 comprehensive multiple-choice items covering passenger communication, diplomatic problem solving, schedules, and fare policies.
+        </p>
+      </div>
+
+      <!-- Instructions List -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 text-xs sm:text-sm text-slate-300">
+        <div class="p-4 rounded-xl bg-slate-800/60 border border-slate-700/60">
+          <div class="font-semibold text-indigo-300 mb-1 flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            16-Minute Countdown
+          </div>
+          Strict 16-minute auto-grading timer. Submit before the clock reaches zero.
+        </div>
+        <div class="p-4 rounded-xl bg-slate-800/60 border border-slate-700/60">
+          <div class="font-semibold text-emerald-400 mb-1 flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            Instant Feedback & Irreversible Answers
+          </div>
+          Selecting an answer locks your choice immediately and displays the answer keys with detailed bilingual rationales.
+        </div>
+        <div class="p-4 rounded-xl bg-slate-800/60 border border-slate-700/60">
+          <div class="font-semibold text-amber-400 mb-1 flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z"></path></svg>
+            British Female Narrator
+          </div>
+          Audio is spoken automatically using a UK voice model. Click the speaker icon to replay any dialogue prompt anytime.
+        </div>
+        <div class="p-4 rounded-xl bg-slate-800/60 border border-slate-700/60">
+          <div class="font-semibold text-sky-400 mb-1 flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            Instructor Direct Dispatch
+          </div>
+          Automated score breakdown and report ready to send to <strong class="text-white">mesayferedegn2@gmail.com</strong>.
+        </div>
+      </div>
+
+      <!-- Identification Fields -->
+      <form id="start-form" onsubmit="handleStartQuiz(event)" class="max-w-md mx-auto space-y-4">
+        <div>
+          <label for="student-name" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+            Student Full Name <span class="text-rose-400">*</span>
+          </label>
+          <input type="text" id="student-name" required placeholder="e.g. Almaz Kebede" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition text-sm">
+        </div>
+        <div>
+          <label for="student-id" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
+            Student ID / Candidate Number <span class="text-rose-400">*</span>
+          </label>
+          <input type="text" id="student-id" required placeholder="e.g. TG-2026-8841" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition text-sm">
+        </div>
+
+        <div id="intro-error" class="hidden text-xs text-rose-400 bg-rose-950/40 border border-rose-800 p-3 rounded-xl text-center"></div>
+
+        <button type="submit" class="w-full py-3.5 px-6 rounded-xl font-bold text-white bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 shadow-lg shadow-indigo-600/30 transform active:scale-[0.99] transition duration-150 flex items-center justify-center gap-2">
+          <span>Start Assessment</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- SCREEN 2: ACTIVE QUESTION SCREEN -->
+    <div id="screen-quiz" class="hidden">
+      <!-- Progress Bar & Question Jump Map -->
+      <div class="mb-5 bg-slate-900/60 p-4 rounded-2xl border border-slate-800 backdrop-blur-md">
+        <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+          <span>Part <span id="quiz-part-num">1</span>: <span id="quiz-part-title" class="text-slate-200 font-semibold">Schedules & Fares</span></span>
+          <span class="font-bold text-indigo-400">Question <span id="quiz-current-num">1</span> of 16</span>
+        </div>
+        <!-- Fluid Progress Fill -->
+        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+          <div id="progress-bar-fill" class="bg-gradient-to-r from-indigo-500 to-cyan-400 h-full transition-all duration-300 rounded-full" style="width: 6.25%;"></div>
+        </div>
+
+        <!-- Question Fast Jump Grid -->
+        <div class="mt-3 flex items-center justify-between gap-1 overflow-x-auto py-1 custom-scrollbar" id="nav-bubble-container">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 sm:p-8 shadow-2xl relative">
+        
+        <!-- Header row of Question: Category & Speaker Button -->
+        <div class="flex items-start justify-between gap-3 mb-4">
+          <span id="question-category-tag" class="px-3 py-1 rounded-md text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 uppercase tracking-wider">
+            Operational Schedule
+          </span>
+          
+          <button id="listen-btn" onclick="speakCurrentQuestion()" class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-sky-300 border border-slate-700 transition" title="Listen with British Woman Narrator">
+            <svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+            <span id="listen-text">Narrate (UK)</span>
+          </button>
+        </div>
+
+        <!-- Question Prompt -->
+        <h3 id="question-text" class="text-base sm:text-lg md:text-xl font-bold text-white mb-6 leading-relaxed">
+          Loading prompt...
+        </h3>
+
+        <!-- Options Container (Instant feedback on click) -->
+        <div id="options-container" class="space-y-3 mb-6">
+          <!-- Option buttons populated by JS -->
+        </div>
+
+        <!-- Instant Feedback & Bilingual Explanation Section (Revealed after selection) -->
+        <div id="feedback-panel" class="hidden rounded-xl p-4 sm:p-5 border transition-all duration-300 mb-6">
+          <div class="flex items-center gap-2 mb-2 font-bold text-sm" id="feedback-heading">
+            <!-- Dynamic feedback header -->
+          </div>
+
+          <!-- English Rationale -->
+          <div class="mb-3 text-xs sm:text-sm text-slate-200">
+            <span class="font-bold text-indigo-300 block mb-1">Standard Industry Rationale (English):</span>
+            <p id="explanation-en" class="leading-relaxed"></p>
+          </div>
+
+          <!-- Amharic Rationale -->
+          <div class="p-3 bg-slate-950/60 rounded-lg border border-slate-800 text-xs sm:text-sm text-amber-200/90 font-ethiopic">
+            <span class="font-bold text-amber-300 block mb-1">ዝርዝር ማብራሪያ (በአማርኛ):</span>
+            <p id="explanation-am" class="leading-relaxed"></p>
+          </div>
+        </div>
+
+        <!-- Bottom Controls: Back, Jump Next/Skip, Submit -->
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-800">
+          <button id="btn-back" onclick="navigateQuestion(-1)" class="px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm bg-slate-800 hover:bg-slate-700 text-slate-300 transition flex items-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            Back
+          </button>
+
+          <div class="flex items-center gap-2">
+            <button id="btn-skip" onclick="skipOrNextQuestion()" class="px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm bg-slate-800 hover:bg-slate-700 text-slate-300 transition flex items-center gap-1.5">
+              <span id="btn-next-label">Jump Next</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+
+            <!-- Submit Final Button (Visible on or before last question once eligible) -->
+            <button id="btn-submit-quiz" onclick="confirmAndSubmitQuiz()" class="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-600/30 transition flex items-center gap-1.5">
+              <span>Submit Assessment</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SCREEN 3: RESULTS & TEACHER DASHBOARD -->
+    <div id="screen-results" class="hidden">
+      <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
+        
+        <!-- Score Banner -->
+        <div class="text-center pb-6 border-b border-slate-800">
+          <div id="score-badge-circle" class="w-24 h-24 mx-auto rounded-full flex flex-col items-center justify-center font-black text-2xl shadow-xl mb-3 border-4 border-indigo-500 bg-indigo-950/60 text-white">
+            <span id="final-score-percent">0%</span>
+            <span class="text-[10px] font-semibold text-slate-400">SCORE</span>
+          </div>
+          <h2 class="text-2xl font-bold text-white mb-1" id="results-headline">Assessment Completed</h2>
+          <p class="text-xs sm:text-sm text-slate-400" id="candidate-meta-summary">Candidate Details</p>
+        </div>
+
+        <!-- Metrics Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-6">
+          <div class="p-4 rounded-xl bg-slate-800/60 border border-slate-700/60 text-center">
+            <div class="text-xs text-slate-400 mb-1">Correct Answers</div>
+            <div class="text-xl font-bold text-emerald-400" id="res-correct-count">0 / 16</div>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-800/60 border border-slate-700/60 text-center">
+            <div class="text-xs text-slate-400 mb-1">Incorrect / Missed</div>
+            <div class="text-xl font-bold text-rose-400" id="res-wrong-count">0 / 16</div>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-800/60 border border-slate-700/60 text-center">
+            <div class="text-xs text-slate-400 mb-1">Time Expended</div>
+            <div class="text-xl font-bold text-sky-400" id="res-time-taken">00:00</div>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-800/60 border border-slate-700/60 text-center">
+            <div class="text-xs text-slate-400 mb-1">Passing Status</div>
+            <div class="text-xl font-bold text-white" id="res-pass-status">PASS</div>
+          </div>
+        </div>
+
+        <!-- Instructor Email Dispatch Panel -->
+        <div class="p-5 rounded-xl bg-gradient-to-br from-indigo-950/70 to-slate-900 border border-indigo-500/30 mb-8">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                <h4 class="text-sm font-bold text-white">Teacher Notification Email Dispatch</h4>
+              </div>
+              <p class="text-xs text-slate-400 mt-1">
+                Official test scores must be transmitted to instructor <strong class="text-indigo-300">mesayferedegn2@gmail.com</strong>.
+              </p>
+            </div>
+            <button onclick="dispatchTeacherEmail()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/30 transition flex items-center justify-center gap-2 shrink-0">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+              <span>Email Score to Instructor</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Teacher Dashboard / Detailed Item Analysis -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="text-sm font-bold text-white uppercase tracking-wider">Teacher Summary & Item Performance</h4>
+            <span class="text-xs text-slate-400">All 16 Model Dialogue Items</span>
+          </div>
+
+          <div class="space-y-3 max-h-96 overflow-y-auto pr-1 custom-scrollbar" id="teacher-review-list">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+
+        <!-- Action Row -->
+        <div class="mt-8 pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
+          <button onclick="restartAssessment()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition">
+            Retake Assessment
+          </button>
+          <button onclick="window.print()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+            Print Results Card
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= IN-APP CONFIRMATION MODAL (Replaces alert/confirm) ================= -->
+  <div id="custom-modal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl">
+      <div id="modal-icon-container" class="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center bg-indigo-500/20 text-indigo-400">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      </div>
+      <h3 id="modal-title" class="text-base font-bold text-white mb-2">Confirmation</h3>
+      <p id="modal-message" class="text-xs sm:text-sm text-slate-300 mb-6">Are you sure?</p>
+      <div class="flex items-center justify-center gap-3">
+        <button id="modal-cancel-btn" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition">Cancel</button>
+        <button id="modal-confirm-btn" class="px-5 py-2 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white transition">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="w-full bg-slate-900/90 border-t border-slate-800 py-3 px-4 text-center text-xs text-slate-500">
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <span>Tour Guiding Instructional Design Series &bull; Professional Model Dialogue</span>
+      <span>Official Submission Email: <a href="mailto:mesayferedegn2@gmail.com" class="text-indigo-400 hover:underline">mesayferedegn2@gmail.com</a></span>
+    </div>
+  </footer>
+
+  <!-- ================= SCRIPT & QUIZ APPLICATION LOGIC ================= -->
+  <script>
+    /* -----------------------------------------------------------
+     * 1. ASSESSMENT QUESTION DATASET
+     * All 16 questions strictly mapped with answer keys, distractors,
+     * English rationales, and professional Amharic translations.
+     * ----------------------------------------------------------- */
+    const quizQuestions = [
+      {
+        id: 1,
+        part: 1,
+        partTitle: "Explaining Schedules, Fares, and Booking Policies",
+        category: "Transit Timing Dialogue",
+        question: "In the standard morning briefing dialogue, how should the tour guide convey the flight timing to the traveler?",
+        options: {
+          A: "\"The flight departs at 9:30 a.m. and arrives at 10:45 a.m.\"",
+          B: "\"The flight leaves out at 9:30 a.m. and reaches in at 10:45 a.m.\"",
+          C: "\"The flight ascends at 9:30 a.m. and terminates at 10:45 a.m.\"",
+          D: "\"The flight checks in at 9:30 a.m. and lands out at 10:45 a.m.\""
+        },
+        correctKey: "A",
+        explanationEn: "In standard transportation and guiding English, transit movements are stated with 'departs' (departure) and 'arrives' (arrival). The phrase 'The flight departs at 9:30 a.m. and arrives at 10:45 a.m.' is grammatically and professionally precise.",
+        explanationAm: "በመደበኛ የቱሪዝም እና የትራንስፖርት እንግሊዝኛ የበረራ መነሻ በ 'departs' እንዲሁም መድረሻ በ 'arrives' ይገለጻል። 'The flight departs at 9:30 a.m. and arrives at 10:45 a.m.' ትክክለኛና ሙያዊ አነጋገር ነው።"
+      },
+      {
+        id: 2,
+        part: 1,
+        partTitle: "Explaining Schedules, Fares, and Booking Policies",
+        category: "Fare Breakdown & Taxation",
+        question: "When a client asks for the total cost breakdown of an organized tour package, which statement is the standard industry phrasing?",
+        options: {
+          A: "\"The charge counts to 140 dollars, excluding regulatory taxes.\"",
+          B: "\"The fare is 140 dollars, including taxes.\"",
+          C: "\"The billing ticket amounts 140 dollars, net of city levies.\"",
+          D: "\"The invoice settles at 140 dollars, plus contingent tariffs.\""
+        },
+        correctKey: "B",
+        explanationEn: "'The fare is 140 dollars, including taxes' is the exact industry terminology used to confirm transportation or tour pricing with clear tax inclusion.",
+        explanationAm: "'The fare is 140 dollars, including taxes' በቱሪዝም እና ትራንስፖርት ዘርፍ የታክስ ክፍያን ጨምሮ አጠቃላይ ዋጋን በግልጽ እና በሙያዊ መንገድ ለማሳወቅ የሚያገለግል መደበኛ አነጋገር ነው።"
+      },
+      {
+        id: 3,
+        part: 1,
+        partTitle: "Explaining Schedules, Fares, and Booking Policies",
+        category: "Ticket Refund Restrictions",
+        question: "A customer inquires whether they can get their money back if they decide not to join the tour. Which phrasing correctly expresses standard booking restrictions?",
+        options: {
+          A: "\"This ticket is fully redeemable without any alteration penalty.\"",
+          B: "\"This ticket is void upon issuance and cannot be adjusted under any condition.\"",
+          C: "\"This ticket is non-refundable but changeable with a fee.\"",
+          D: "\"This ticket is subject to forfeiture unless endorsed by the manager.\""
+        },
+        correctKey: "C",
+        explanationEn: "'Non-refundable but changeable with a fee' is standard contractual terminology in tourism indicating no cash reimbursement is possible, but travel dates can be altered with a surcharge.",
+        explanationAm: "'Non-refundable but changeable with a fee' የሚለው አገላለጽ ገንዘቡ ተመላሽ እንደማይሆን ነገር ግን ተጨማሪ ክፍያ በመክፈል የጉዞ ቀንን መቀየር እንደሚቻል የሚያስረዳ የውል ቃል ነው።"
+      },
+      {
+        id: 4,
+        part: 1,
+        partTitle: "Explaining Schedules, Fares, and Booking Policies",
+        category: "Diplomatic Cancellation Delivery",
+        question: "If a guest must cancel their booked excursion on short notice, which phrasing professionally delivers the unfavorable policy?",
+        options: {
+          A: "\"You are strictly liable to suffer the cancellation fine.\"",
+          B: "\"It's not our fault, but cancellation demands payment.\"",
+          C: "\"Cancellation is impossible unless you forfeit the full voucher.\"",
+          D: "\"I'm afraid there is a cancellation fee.\""
+        },
+        correctKey: "D",
+        explanationEn: "Starting with diplomatic softeners like 'I'm afraid there is...' cushions negative news. Phrases like 'I'm afraid there is a cancellation fee' remain polite, objective, and clear.",
+        explanationAm: "አስቸጋሪ ፖሊሲዎችን ወይም መጥፎ ዜናን ለደንበኛ ሲያሳውቁ 'I'm afraid there is...' የሚሉ ዲፕሎማሲያዊ ማለስለሻዎችን መጠቀም ትህትና የተሞላበት ሙያዊ አካሄድ ነው።"
+      },
+      {
+        id: 5,
+        part: 1,
+        partTitle: "Explaining Schedules, Fares, and Booking Policies",
+        category: "Complimentary Itinerary Adjustments",
+        question: "When an itinerary change is feasible without penalizing the traveler, how does the guide propose this solution?",
+        options: {
+          A: "\"We can reschedule your trip at no extra cost.\"",
+          B: "\"We might shift your dates if you cover incidental administrative overhead.\"",
+          C: "\"We are willing to alter your departure provided you re-issue the voucher.\"",
+          D: "\"We could push your booking back, though routine penalties usually apply.\""
+        },
+        correctKey: "A",
+        explanationEn: "'We can reschedule your trip at no extra cost' communicates positive flexibility and customer service readiness clearly and concisely.",
+        explanationAm: "'We can reschedule your trip at no extra cost' ያለ ምንም ተጨማሪ ክፍያ ጉዞውን ማስተካከል እንደሚቻል ለደንበኛ ግልጽ፣ ቀና እና አጽናኝ በሆነ መንገድ የሚቀርብ አገላለጽ ነው።"
+      },
+      {
+        id: 6,
+        part: 1,
+        partTitle: "Explaining Schedules, Fares, and Booking Policies",
+        category: "Model Dialogue Sequencing",
+        question: "In the model dialogue, what question does the guest ask immediately after the guide announces the departure and arrival times?",
+        options: {
+          A: "\"How much extra luggage is allowed on the flight?\"",
+          B: "\"What is the total cost?\"",
+          C: "\"Is the airport transfer covered in the itinerary?\"",
+          D: "\"Which terminal does the aircraft board from?\""
+        },
+        correctKey: "B",
+        explanationEn: "In the structured model dialogue, the guest inquires about financial details directly after the itinerary timing by asking: 'What is the total cost?'",
+        explanationAm: "በተቀመጠው ሞዴል ንግግር መሰረት አስጎብኚው የመነሻና የመድረሻ ሰዓቱን ከገለጸ በኋላ፣ ደንበኛው ወዲያውኑ የዋጋውን መጠን 'What is the total cost?' በማለት ይጠይቃል።"
+      },
+      {
+        id: 7,
+        part: 1,
+        partTitle: "Explaining Schedules, Fares, and Booking Policies",
+        category: "Gratitude & Courteous Closures",
+        question: "A guest expresses gratitude after the guide clarifies the rescheduling and cancellation guidelines ('That's helpful, thank you!'). What is the most fitting professional closing reply?",
+        options: {
+          A: "\"No worries at all.\"",
+          B: "\"Don't mention it.\"",
+          C: "\"You're very welcome!\"",
+          D: "\"Okay, sure thing.\""
+        },
+        correctKey: "C",
+        explanationEn: "'You're very welcome!' or 'It's my pleasure' is the customary professional rejoinder to a guest's gratitude, far more polite than casual dismissals like 'No worries' or 'Sure thing'.",
+        explanationAm: "ደንበኛው ምስጋና ሲያቀርብ 'You're very welcome!' ወይም 'It's my pleasure' ማለት ተገቢው ሙያዊ ምላሽ ሲሆን እንደ 'No worries' ወይም 'Sure thing' ያሉ ዘና ያሉ ቃላት አይመከሩም።"
+      },
+      {
+        id: 8,
+        part: 1,
+        partTitle: "Explaining Schedules, Fares, and Booking Policies",
+        category: "Aviation & Tour Terminology",
+        question: "Which term in airline and tour operations specifically describes a ticket where payments cannot be returned to the passenger upon cancellation, but travel dates may be modified for a surcharge?",
+        options: {
+          A: "Open-ended concession ticket",
+          B: "Provisional non-transferable pass",
+          C: "Guaranteed conditional voucher",
+          D: "Non-refundable but changeable ticket"
+        },
+        correctKey: "D",
+        explanationEn: "A 'non-refundable but changeable ticket' precisely identifies a tariff restriction where the base payment is retained by the carrier or operator, but itinerary dates may be adjusted.",
+        explanationAm: "'Non-refundable but changeable ticket' የሚለው ቃል ክፍያው ተመላሽ እንደማይሆን ነገር ግን ተሳፋሪው ቀኑን በክፍያ መቀየር እንደሚችል የሚያመለክት ትክክለኛ የዘርፉ ቴክኒካዊ መጠሪያ ነው።"
+      },
+      {
+        id: 9,
+        part: 2,
+        partTitle: "Professional Language, Etiquette & Diplomatic Inquiries",
+        category: "Polite Interruption Handling",
+        question: "During bus boarding at a crowded terminal, a guest approaches with an urgent inquiry while the guide is conducting a passenger headcount. Which phrase should the guide use instead of 'Wait a minute'?",
+        options: {
+          A: "\"Just a moment, please.\"",
+          B: "\"Hold your horses for a second.\"",
+          C: "\"Stand aside until I am finished.\"",
+          D: "\"Give me some time to sort this out.\""
+        },
+        correctKey: "A",
+        explanationEn: "'Just a moment, please' temporarily pauses an interaction with courtesy, whereas 'Wait a minute' or 'Hold your horses' is abrupt and impolite in guest-facing situations.",
+        explanationAm: "'Just a moment, please' የሚለው አገላለጽ ደንበኛን በትህትና ጥቂት እንዲጠብቅ ለማድረግ የሚያስችል ሲሆን፣ 'Wait a minute' ወይም 'Hold your horses' ግን አክብሮት የጎደለውና ሻካራ ነው።"
+      },
+      {
+        id: 10,
+        part: 2,
+        partTitle: "Professional Language, Etiquette & Diplomatic Inquiries",
+        category: "Diplomatic Handling of Unknowns",
+        question: "A visitor asks an obscure historical question: 'Are photography permits required inside the royal chapel?' The guide is unsure. Which response demonstrates professional service etiquette?",
+        options: {
+          A: "\"I don't know; nobody briefed me about photography.\"",
+          B: "\"Let me check that for you with the head curator.\"",
+          C: "\"I have no idea, so it is better not to take any photos.\"",
+          D: "\"You'll have to ask the ticket counter when we walk past.\""
+        },
+        correctKey: "B",
+        explanationEn: "When facts are unverified, a professional guide never says 'I don't know'. 'Let me check that for you' buys time while proactively committing to find the accurate answer.",
+        explanationAm: "አስጎብኚው አንድን ጉዳይ በማያውቅበት ጊዜ 'I don't know' ከማለት ይልቅ 'Let me check that for you' በማለት መረጃውን አጣርቶ ለማምጣት ኃላፊነት መውሰዱ ከፍተኛ ሙያዊ ብቃትን ያሳያል።"
+      },
+      {
+        id: 11,
+        part: 2,
+        partTitle: "Professional Language, Etiquette & Diplomatic Inquiries",
+        category: "Service-Oriented Affirmations",
+        question: "A traveler on a walking tour remarks: 'Could we slow our walking pace on this steep hill?' Which response is the most courteous and service-oriented alternative to 'No problem'?",
+        options: {
+          A: "\"Yeah, that's fine by me.\"",
+          B: "\"Sure, if the rest of the group agrees.\"",
+          C: "\"Certainly, I'll be happy to help adjust our pace.\"",
+          D: "\"No issue, walking uphill is tough anyway.\""
+        },
+        correctKey: "C",
+        explanationEn: "Replacing the informal 'No problem' with 'Certainly / I'll be happy to help' elevates the customer service standard by signaling enthusiastic willingness to assist.",
+        explanationAm: "በእንግዳ አገልግሎት ዘርፍ 'No problem' የሚለውን ቸልተኛ አነጋገር በ 'Certainly, I'll be happy to help' መተካት እንግዳውን ለማገልገል ያለዎትን ፍጹም ፈቃደኝነት ያረጋግጣል።"
+      },
+      {
+        id: 12,
+        part: 2,
+        partTitle: "Professional Language, Etiquette & Diplomatic Inquiries",
+        category: "De-escalation & Conflict Resolution",
+        question: "A tourist insists angrily: 'Our itinerary said the craft market was scheduled for this morning!' Rather than saying 'You're wrong', how should the guide de-escalate the dispute?",
+        options: {
+          A: "\"That is inaccurate; you must have read an outdated version.\"",
+          B: "\"You are mistaken; the craft market is always an afternoon activity.\"",
+          C: "\"Check your brochure again because you misread the schedule.\"",
+          D: "\"I think there might be a mistake; let's check your schedule together.\""
+        },
+        correctKey: "D",
+        explanationEn: "'I think there might be a mistake; let's check your schedule together' avoids direct personal confrontation ('You're wrong') and adopts a collaborative problem-solving approach.",
+        explanationAm: "ደንበኛው በተሳሳተ ጊዜ 'You're wrong' ብሎ መጋፈጥ ቅሬታን ያባብሳል፤ በምትኩ 'I think there might be a mistake; let's check together' ብሎ በትብብር መፈተሽ ውጥረትን ያረግባል።"
+      },
+      {
+        id: 13,
+        part: 2,
+        partTitle: "Professional Language, Etiquette & Diplomatic Inquiries",
+        category: "Welcoming Protocol & Greetings",
+        question: "When welcoming a tour group at an airport arrivals hall or hotel lobby, what is the best formal replacement for casual greetings like 'What's up?' or 'What do you want?'?",
+        options: {
+          A: "\"Good morning and welcome! How may I assist you today?\"",
+          B: "\"Hey everyone, what brings your group here today?\"",
+          C: "\"Welcome all, who is in charge of this party?\"",
+          D: "\"Good day, what issues need resolving right now?\""
+        },
+        correctKey: "A",
+        explanationEn: "'How may I assist you today?' is the quintessential hospitality greeting, projecting warmth, preparedness, and professional respect.",
+        explanationAm: "'Good morning and welcome! How may I assist you today?' የሚለው ሰላምታ ለቱሪስቶች ከፍተኛ አክብሮት፣ ሙያዊ ዝግጁነት እና ወዳጃዊ አቀባበልን የሚያሳይ መደበኛ አነጋገር ነው።"
+      },
+      {
+        id: 14,
+        part: 2,
+        partTitle: "Professional Language, Etiquette & Diplomatic Inquiries",
+        category: "Hospitality Psychology & Etiquette Rules",
+        question: "Why do professional hospitality trainers advise tour guides against using phrases like 'You're wrong' or 'I don't know' with international travelers?",
+        options: {
+          A: "Because tour guides are legally prohibited from admitting any factual gaps or logistical errors.",
+          B: "Because polite alternatives avoid direct contradiction, buy time to verify facts, and sustain guest confidence.",
+          C: "Because international guests expect guides to have photographic memory of all regional trivia.",
+          D: "Because formal English discourages two-way dialogue between guides and excursion participants."
+        },
+        correctKey: "B",
+        explanationEn: "Pedagogical guidelines emphasize that diplomatic substitutes prevent guest defensiveness, avoid blunt contradiction, and allow the guide to verify logistical details without compromising trust.",
+        explanationAm: "እንግዶችን 'ተሳስተሃል' ወይም 'አላውቅም' አለማለት እንግዶች እንዳይከፉ፣ መረጃን በትክክል ለማጣራት ጊዜ ለመውሰድ እና በእንግዶች ዘንድ ያለውን አመኔታ እንዳይሸረሸር ለመጠበቅ ያገለግላል።"
+      },
+      {
+        id: 15,
+        part: 2,
+        partTitle: "Professional Language, Etiquette & Diplomatic Inquiries",
+        category: "Linguistic Register & Contexts",
+        question: "Two trainees are loading equipment. Trainee A says: 'Thanks for taking my afternoon shift, Dawit.' Trainee B replies: 'No problem, just hand me the briefing notes.' Why is 'No problem' acceptable in this context?",
+        options: {
+          A: "Hospitality regulations apply only when handling VIP tourists, not general groups.",
+          B: "Trainees are not expected to use professional English until they pass their final certification exam.",
+          C: "It occurs in an informal peer-to-peer operational setting between colleagues, rather than guest-facing communication.",
+          D: "Colleagues are forbidden from using polite phrases such as 'Certainly' or 'I'll be happy to help'."
+        },
+        correctKey: "C",
+        explanationEn: "Register and tone depend on the audience. Peer-to-peer exchanges behind the scenes often use relaxed colloquial language ('No problem'), whereas guest interactions demand formal etiquette.",
+        explanationAm: "የቋንቋ ደረጃ እንደ ሁኔታው ይወሰናል። ከስራ ባልደረቦች ጋር በውስጣዊ ግንኙነት ጊዜ 'No problem' መጠቀም ተቀባይነት ሲኖረው፣ ከደንበኞች ጋር ፊት ለፊት በሚደረግ ግንኙነት ግን መደበኛ አነጋገር ያስፈልጋል።"
+      },
+      {
+        id: 16,
+        part: 2,
+        partTitle: "Professional Language, Etiquette & Diplomatic Inquiries",
+        category: "Diplomatic Inclusions & Solution Framing",
+        question: "A visitor approaches the tour desk and says: 'I was told entrance to the national museum was included in our day pass.' The guide knows this pass only covers exterior gardens. What is the most diplomatic response?",
+        options: {
+          A: "\"You were misinformed by whoever sold you that voucher.\"",
+          B: "\"That's completely incorrect; gardens are the only permitted area.\"",
+          C: "\"You cannot enter the museum with that pass, as clearly written on the back.\"",
+          D: "\"I understand the confusion; let me clarify what this pass covers and how we can add museum admission for you.\""
+        },
+        correctKey: "D",
+        explanationEn: "Diplomatic problem-solving acknowledges guest perspective ('I understand the confusion'), clarifies actual entitlements politely without assigning blame, and offers constructive solutions.",
+        explanationAm: "ዲፕሎማሲያዊ መስተንግዶ በቅድሚያ የእንግዳውን ግራ መጋባት መረዳትን ('I understand the confusion') ያሳያል፤ ማንንም ሳይወቅስ እውነታውን አስረድቶ ወደ መፍትሄው ያመራል።"
+      }
+    ];
+
+    /* -----------------------------------------------------------
+     * 2. STATE MANAGEMENT
+     * ----------------------------------------------------------- */
+    let studentData = {
+      fullName: "",
+      studentId: "",
+      startTime: null,
+      endTime: null,
+      timeExpendedSec: 0
+    };
+
+    let currentIndex = 0;
+    // Map storing user answers: key = question id, value = { selected: 'A', isCorrect: true, locked: true }
+    let userAnswers = {};
+    let isTestActive = false;
+    let timerInterval = null;
+    let totalSecondsRemaining = 16 * 60; // 16 minutes exact as requested
+    let narratorEnabled = true;
+    let currentSpeechUtterance = null;
+    let britishVoice = null;
+
+    /* -----------------------------------------------------------
+     * 3. INITIALIZATION & SPEECH SYNTHESIS SETUP
+     * Dedicated British Female Voice Selection
+     * ----------------------------------------------------------- */
+    window.addEventListener('DOMContentLoaded', () => {
+      initSpeechVoices();
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.onvoiceschanged = initSpeechVoices;
+      }
+    });
+
+    function initSpeechVoices() {
+      if (!('speechSynthesis' in window)) return;
+      const voices = window.speechSynthesis.getVoices();
+      
+      // Look for a British Female voice (e.g. Google UK English Female, Victoria, Libby, Serena, en-GB)
+      britishVoice = voices.find(v => (v.lang === 'en-GB' || v.lang === 'en_GB') && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('uk') || v.name.includes('Victoria') || v.name.includes('Libby') || v.name.includes('Serena')))
+        || voices.find(v => v.lang === 'en-GB' || v.lang === 'en_GB')
+        || voices.find(v => v.lang.startsWith('en'));
+    }
+
+    function toggleNarratorMaster() {
+      narratorEnabled = !narratorEnabled;
+      const label = document.getElementById('narrator-label');
+      const icon = document.getElementById('narrator-icon');
+      if (narratorEnabled) {
+        label.innerText = "Narrator (UK): ON";
+        label.parentElement.classList.remove('text-slate-400');
+        label.parentElement.classList.add('text-indigo-300');
+        icon.className = "flex h-2 w-2 relative";
+        icon.innerHTML = '<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>';
+        speakCurrentQuestion();
+      } else {
+        stopSpeech();
+        label.innerText = "Narrator (UK): OFF";
+        label.parentElement.classList.remove('text-indigo-300');
+        label.parentElement.classList.add('text-slate-400');
+        icon.className = "h-2 w-2 rounded-full bg-slate-500 inline-block";
+        icon.innerHTML = "";
+      }
+    }
+
+    function stopSpeech() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    function speakCurrentQuestion() {
+      if (!('speechSynthesis' in window) || !narratorEnabled) return;
+      stopSpeech();
+
+      const q = quizQuestions[currentIndex];
+      const textToRead = `Question ${q.id}. ${q.question}. Option A: ${q.options.A}. Option B: ${q.options.B}. Option C: ${q.options.C}. Option D: ${q.options.D}.`;
+
+      currentSpeechUtterance = new SpeechSynthesisUtterance(textToRead);
+      if (britishVoice) {
+        currentSpeechUtterance.voice = britishVoice;
+      }
+      currentSpeechUtterance.lang = 'en-GB';
+      currentSpeechUtterance.rate = 0.95; // Clear pedagogical cadence
+      currentSpeechUtterance.pitch = 1.05; // Slightly elevated feminine pitch profile
+
+      const btn = document.getElementById('listen-btn');
+      const btnText = document.getElementById('listen-text');
+      
+      currentSpeechUtterance.onstart = () => {
+        if (btn) btn.classList.add('ring-2', 'ring-sky-400', 'pulsing-audio');
+        if (btnText) btnText.innerText = "Reading Prompt...";
+      };
+      currentSpeechUtterance.onend = () => {
+        if (btn) btn.classList.remove('ring-2', 'ring-sky-400', 'pulsing-audio');
+        if (btnText) btnText.innerText = "Narrate (UK)";
+      };
+      currentSpeechUtterance.onerror = () => {
+        if (btn) btn.classList.remove('ring-2', 'ring-sky-400', 'pulsing-audio');
+        if (btnText) btnText.innerText = "Narrate (UK)";
+      };
+
+      window.speechSynthesis.speak(currentSpeechUtterance);
+    }
+
+    /* -----------------------------------------------------------
+     * 4. TIMER FUNCTIONALITY (Exact match to requested code structure)
+     * ----------------------------------------------------------- */
+    function startAssessmentTimer() {
+      totalSecondsRemaining = 16 * 60;
+      updateTimerDisplay();
+
+      timerInterval = setInterval(() => {
+        totalSecondsRemaining--;
+        updateTimerDisplay();
+
+        if (totalSecondsRemaining <= 0) {
+          clearInterval(timerInterval);
+          handleTimeExpiredAutoSubmit();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(totalSecondsRemaining / 60);
+      const seconds = totalSecondsRemaining % 60;
+      const formatted = `${minutes}m ${seconds < 10 ? '0' : ''}${seconds}s`;
+      
+      const timerEl = document.getElementById('timer');
+      if (timerEl) {
+        timerEl.innerText = `Time: ${formatted}`;
+        if (totalSecondsRemaining <= 120) {
+          timerEl.style.color = '#ef4444'; // Bright warning pulse
+          timerEl.classList.add('animate-pulse');
+        } else {
+          timerEl.style.color = '#e74c3c';
+          timerEl.classList.remove('animate-pulse');
+        }
+      }
+    }
+
+    function handleTimeExpiredAutoSubmit() {
+      showCustomModal(
+        "Time Expired!",
+        "The 16-minute examination limit has concluded. Your assessment will now be auto-graded and locked.",
+        () => {
+          submitAssessmentFinal();
+        },
+        false // No cancel button on forced expiration
+      );
+    }
+
+    /* -----------------------------------------------------------
+     * 5. REGISTRATION & TEST START
+     * ----------------------------------------------------------- */
+    function handleStartQuiz(e) {
+      e.preventDefault();
+      const nameInput = document.getElementById('student-name').value.trim();
+      const idInput = document.getElementById('student-id').value.trim();
+      const errBox = document.getElementById('intro-error');
+
+      if (!nameInput || !idInput) {
+        errBox.innerText = "Please provide both Full Name and Student ID Number to proceed.";
+        errBox.classList.remove('hidden');
+        return;
+      }
+
+      errBox.classList.add('hidden');
+      studentData.fullName = nameInput;
+      studentData.studentId = idInput;
+      studentData.startTime = new Date();
+
+      // Switch views
+      document.getElementById('screen-intro').classList.add('hidden');
+      document.getElementById('screen-quiz').classList.remove('hidden');
+
+      isTestActive = true;
+      startAssessmentTimer();
+      renderNavigationBubbles();
+      loadQuestion(0);
+    }
+
+    /* -----------------------------------------------------------
+     * 6. NAVIGATION BUBBLES GENERATION
+     * ----------------------------------------------------------- */
+    function renderNavigationBubbles() {
+      const container = document.getElementById('nav-bubble-container');
+      container.innerHTML = "";
+
+      quizQuestions.forEach((q, idx) => {
+        const btn = document.createElement('button');
+        btn.id = `nav-bubble-${idx}`;
+        btn.setAttribute('aria-label', `Jump to question ${idx + 1}`);
+        btn.className = getBubbleClasses(idx);
+        btn.innerText = (idx + 1);
+        btn.onclick = () => {
+          stopSpeech();
+          loadQuestion(idx);
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    function getBubbleClasses(idx) {
+      const q = quizQuestions[idx];
+      const ans = userAnswers[q.id];
+      const isCurrent = (idx === currentIndex);
+
+      let base = "w-8 h-8 rounded-lg text-xs font-bold shrink-0 transition flex items-center justify-center border ";
+
+      if (isCurrent) {
+        return base + "bg-indigo-600 text-white border-white ring-2 ring-indigo-400";
+      }
+      if (ans && ans.locked) {
+        if (ans.isCorrect) {
+          return base + "bg-emerald-900/60 text-emerald-300 border-emerald-500/50 hover:bg-emerald-800";
+        } else {
+          return base + "bg-rose-950/70 text-rose-300 border-rose-500/50 hover:bg-rose-900";
+        }
+      }
+      return base + "bg-slate-800 text-slate-400 border-slate-700 hover:bg-slate-700 hover:text-white";
+    }
+
+    function updateAllNavigationBubbles() {
+      quizQuestions.forEach((_, idx) => {
+        const el = document.getElementById(`nav-bubble-${idx}`);
+        if (el) el.className = getBubbleClasses(idx);
+      });
+    }
+
+    /* -----------------------------------------------------------
+     * 7. QUESTION RENDERING & IRREVERSIBLE INSTANT FEEDBACK
+     * ----------------------------------------------------------- */
+    function loadQuestion(index) {
+      if (index < 0 || index >= quizQuestions.length) return;
+      stopSpeech();
+      currentIndex = index;
+
+      const q = quizQuestions[currentIndex];
+
+      // Update Header info
+      document.getElementById('quiz-part-num').innerText = q.part;
+      document.getElementById('quiz-part-title').innerText = q.partTitle;
+      document.getElementById('quiz-current-num').innerText = q.id;
+      document.getElementById('question-category-tag').innerText = q.category;
+      document.getElementById('question-text').innerText = `${q.id}. ${q.question}`;
+
+      // Update progress bar
+      const percent = ((currentIndex + 1) / quizQuestions.length) * 100;
+      document.getElementById('progress-bar-fill').style.width = `${percent}%`;
+
+      // Render Options with click handling
+      const container = document.getElementById('options-container');
+      container.innerHTML = "";
+
+      const answered = userAnswers[q.id];
+      const isLocked = answered && answered.locked;
+
+      const keys = ['A', 'B', 'C', 'D'];
+      keys.forEach(key => {
+        const optText = q.options[key];
+        const btn = document.createElement('button');
+        btn.id = `opt-btn-${key}`;
+        btn.disabled = !!isLocked; // Irreversible lock once selected
+
+        let btnClass = "w-full p-4 rounded-xl text-left text-xs sm:text-sm transition flex items-start gap-3 border ";
+
+        if (!isLocked) {
+          // Default unselected state
+          btnClass += "bg-slate-800/80 border-slate-700 text-slate-200 hover:bg-slate-700 hover:border-indigo-500 hover:text-white active:scale-[0.99]";
+        } else {
+          // Instant feedback highlighting logic:
+          if (key === q.correctKey) {
+            // Correct Answer is always highlighted in solid emerald
+            btnClass += "bg-emerald-950/70 border-emerald-500 text-emerald-200 ring-2 ring-emerald-500/50";
+          } else if (key === answered.selected && !answered.isCorrect) {
+            // User selected the wrong answer -> Highlight in rose
+            btnClass += "bg-rose-950/80 border-rose-500 text-rose-200 line-through opacity-90 ring-2 ring-rose-500/50";
+          } else {
+            // Neutral unchosen options
+            btnClass += "bg-slate-900/60 border-slate-800 text-slate-500 opacity-60";
+          }
+        }
+
+        btn.className = btnClass;
+
+        // Custom Key Badge
+        let badgeClass = "w-6 h-6 rounded-md flex items-center justify-center font-bold text-xs shrink-0 ";
+        if (!isLocked) {
+          badgeClass += "bg-slate-700 text-slate-300";
+        } else if (key === q.correctKey) {
+          badgeClass += "bg-emerald-500 text-slate-950 font-black";
+        } else if (key === answered.selected && !answered.isCorrect) {
+          badgeClass += "bg-rose-500 text-white font-black";
+        } else {
+          badgeClass += "bg-slate-800 text-slate-500";
+        }
+
+        btn.innerHTML = `
+          <span class="${badgeClass}">${key}</span>
+          <span class="flex-grow font-medium leading-relaxed">${optText}</span>
+          ${isLocked && key === q.correctKey ? '<svg class="w-5 h-5 text-emerald-400 shrink-0 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>' : ''}
+          ${isLocked && key === answered.selected && !answered.isCorrect ? '<svg class="w-5 h-5 text-rose-400 shrink-0 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>' : ''}
+        `;
+
+        if (!isLocked) {
+          btn.onclick = () => handleSelectOption(key);
+        }
+
+        container.appendChild(btn);
+      });
+
+      // Feedback panel logic
+      const fbPanel = document.getElementById('feedback-panel');
+      const fbHeading = document.getElementById('feedback-heading');
+      const fbEn = document.getElementById('explanation-en');
+      const fbAm = document.getElementById('explanation-am');
+
+      if (isLocked) {
+        fbPanel.classList.remove('hidden');
+        if (answered.isCorrect) {
+          fbPanel.className = "rounded-xl p-4 sm:p-5 border mb-6 bg-emerald-950/40 border-emerald-500/40";
+          fbHeading.className = "flex items-center gap-2 mb-2 font-bold text-sm text-emerald-400";
+          fbHeading.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Correct Answer! Professional Etiquette Upheld.`;
+        } else {
+          fbPanel.className = "rounded-xl p-4 sm:p-5 border mb-6 bg-rose-950/40 border-rose-500/40";
+          fbHeading.className = "flex items-center gap-2 mb-2 font-bold text-sm text-rose-400";
+          fbHeading.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Incorrect. The correct key is (${q.correctKey}).`;
+        }
+        fbEn.innerText = q.explanationEn;
+        fbAm.innerText = q.explanationAm;
+      } else {
+        fbPanel.classList.add('hidden');
+      }
+
+      // Back & Next controls
+      document.getElementById('btn-back').disabled = (currentIndex === 0);
+      
+      const nextBtnLabel = document.getElementById('btn-next-label');
+      if (currentIndex === quizQuestions.length - 1) {
+        nextBtnLabel.innerText = "Review First (Q1)";
+      } else {
+        nextBtnLabel.innerText = answered ? "Next Question" : "Jump Next / Skip";
+      }
+
+      updateAllNavigationBubbles();
+
+      // Trigger British voice narration automatically if toggled on
+      if (narratorEnabled) {
+        speakCurrentQuestion();
+      }
+    }
+
+    /* -----------------------------------------------------------
+     * 8. OPTION SELECTION & AUTO-LOCKING (Instant Feedback)
+     * ----------------------------------------------------------- */
+    function handleSelectOption(selectedKey) {
+      const q = quizQuestions[currentIndex];
+      // Irreversible lock check
+      if (userAnswers[q.id] && userAnswers[q.id].locked) {
+        return;
+      }
+
+      const isCorrect = (selectedKey === q.correctKey);
+
+      // Lock in response
+      userAnswers[q.id] = {
+        selected: selectedKey,
+        isCorrect: isCorrect,
+        locked: true,
+        questionId: q.id
+      };
+
+      // Play soft feedback tone via Web Audio API (No external sound files)
+      playAudioTone(isCorrect);
+
+      // Re-render question to apply highlighting, disable buttons, and show rationales
+      loadQuestion(currentIndex);
+    }
+
+    function playAudioTone(isSuccess) {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        const now = ctx.currentTime;
+        if (isSuccess) {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, now); // C5
+          osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.15); // E5
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+          osc.start(now);
+          osc.stop(now + 0.35);
+        } else {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(260, now);
+          osc.frequency.exponentialRampToValueAtTime(180, now + 0.25);
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+          osc.start(now);
+          osc.stop(now + 0.3);
+        }
+      } catch (e) {
+        // AudioContext silent fallback
+      }
+    }
+
+    /* -----------------------------------------------------------
+     * 9. NAVIGATION CONTROLS (Back, Jump Next, Skip)
+     * ----------------------------------------------------------- */
+    function navigateQuestion(delta) {
+      const target = currentIndex + delta;
+      if (target >= 0 && target < quizQuestions.length) {
+        loadQuestion(target);
+      }
+    }
+
+    function skipOrNextQuestion() {
+      if (currentIndex < quizQuestions.length - 1) {
+        loadQuestion(currentIndex + 1);
+      } else {
+        // Wrap around to start if navigating beyond Q16
+        loadQuestion(0);
+      }
+    }
+
+    /* -----------------------------------------------------------
+     * 10. SUBMISSION & GRADING
+     * ----------------------------------------------------------- */
+    function confirmAndSubmitQuiz() {
+      stopSpeech();
+      const answeredCount = Object.keys(userAnswers).length;
+      const totalCount = quizQuestions.length;
+      const unanswered = totalCount - answeredCount;
+
+      let msg = `You have answered ${answeredCount} of ${totalCount} items.`;
+      if (unanswered > 0) {
+        msg += ` Warning: ${unanswered} question(s) remain unanswered and will be marked 0. Proceed to submit?`;
+      } else {
+        msg += " Ready to finalize and submit your assessment for auto-grading?";
+      }
+
+      showCustomModal("Final Assessment Submission", msg, () => {
+        submitAssessmentFinal();
+      }, true);
+    }
+
+    function submitAssessmentFinal() {
+      isTestActive = false;
+      clearInterval(timerInterval);
+      stopSpeech();
+
+      studentData.endTime = new Date();
+      if (studentData.startTime) {
+        studentData.timeExpendedSec = Math.round((studentData.endTime - studentData.startTime) / 1000);
+      } else {
+        studentData.timeExpendedSec = (16 * 60) - totalSecondsRemaining;
+      }
+
+      // Calculate auto-grade
+      let correctScore = 0;
+      quizQuestions.forEach(q => {
+        const entry = userAnswers[q.id];
+        if (entry && entry.isCorrect) {
+          correctScore++;
+        }
+      });
+
+      const percentage = Math.round((correctScore / quizQuestions.length) * 100);
+      const isPass = percentage >= 70; // 70% threshold standard
+
+      // Switch screens
+      document.getElementById('screen-quiz').classList.add('hidden');
+      document.getElementById('screen-results').classList.remove('hidden');
+
+      // Populate summary UI
+      document.getElementById('final-score-percent').innerText = `${percentage}%`;
+      const circle = document.getElementById('score-badge-circle');
+      if (isPass) {
+        circle.className = "w-24 h-24 mx-auto rounded-full flex flex-col items-center justify-center font-black text-2xl shadow-xl mb-3 border-4 border-emerald-500 bg-emerald-950/60 text-emerald-300";
+      } else {
+        circle.className = "w-24 h-24 mx-auto rounded-full flex flex-col items-center justify-center font-black text-2xl shadow-xl mb-3 border-4 border-rose-500 bg-rose-950/60 text-rose-300";
+      }
+
+      document.getElementById('candidate-meta-summary').innerHTML = `Candidate: <strong class="text-white">${studentData.fullName}</strong> &bull; ID: <strong class="text-white">${studentData.studentId}</strong>`;
+      document.getElementById('res-correct-count').innerText = `${correctScore} / 16`;
+      document.getElementById('res-wrong-count').innerText = `${16 - correctScore} / 16`;
+
+      const m = Math.floor(studentData.timeExpendedSec / 60);
+      const s = studentData.timeExpendedSec % 60;
+      document.getElementById('res-time-taken').innerText = `${m}m ${s < 10 ? '0' : ''}${s}s`;
+
+      const passStatusEl = document.getElementById('res-pass-status');
+      passStatusEl.innerText = isPass ? "PASSED (COMPETENT)" : "NEEDS RETAKE";
+      passStatusEl.className = isPass ? "text-xl font-bold text-emerald-400" : "text-xl font-bold text-rose-400";
+
+      // Render Teacher Summary & Items breakdown
+      renderTeacherDashboard(correctScore, percentage);
+    }
+
+    /* -----------------------------------------------------------
+     * 11. TEACHER DASHBOARD & ITEM BREAKDOWN
+     * ----------------------------------------------------------- */
+    function renderTeacherDashboard(correctScore, percentage) {
+      const container = document.getElementById('teacher-review-list');
+      container.innerHTML = "";
+
+      quizQuestions.forEach((q, idx) => {
+        const userEntry = userAnswers[q.id];
+        const selected = userEntry ? userEntry.selected : "None";
+        const isCorrect = userEntry ? userEntry.isCorrect : false;
+
+        const row = document.createElement('div');
+        row.className = `p-3.5 rounded-xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs ${
+          isCorrect ? 'bg-slate-800/40 border-slate-700/60' : 'bg-rose-950/20 border-rose-900/40'
+        }`;
+
+        row.innerHTML = `
+          <div class="flex-grow">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="font-bold text-white">Item ${q.id}:</span>
+              <span class="text-slate-300 font-medium">${q.category}</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold ${isCorrect ? 'bg-emerald-500/20 text-emerald-300' : 'bg-rose-500/20 text-rose-300'}">
+                ${isCorrect ? 'Correct' : 'Incorrect'}
+              </span>
+            </div>
+            <p class="text-slate-400 line-clamp-1">${q.question}</p>
+          </div>
+          <div class="flex items-center gap-3 shrink-0">
+            <div class="text-right">
+              <div class="text-[10px] text-slate-400">Chosen: <strong class="${isCorrect ? 'text-emerald-400' : 'text-rose-400'}">${selected}</strong></div>
+              <div class="text-[10px] text-slate-400">Key: <strong class="text-emerald-400">${q.correctKey}</strong></div>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(row);
+      });
+    }
+
+    /* -----------------------------------------------------------
+     * 12. TEACHER EMAIL REPORT GENERATOR (mailto: mesayferedegn2@gmail.com)
+     * ----------------------------------------------------------- */
+    function dispatchTeacherEmail() {
+      const teacherEmail = "mesayferedegn2@gmail.com";
+      const subject = encodeURIComponent(`Assessment Results: Tour Guiding Dialogue - ${studentData.fullName} (${studentData.studentId})`);
+
+      let correctScore = 0;
+      let itemDetails = "";
+
+      quizQuestions.forEach(q => {
+        const u = userAnswers[q.id];
+        const sel = u ? u.selected : "Unanswered";
+        const status = (u && u.isCorrect) ? "CORRECT (+1)" : "INCORRECT (0)";
+        if (u && u.isCorrect) correctScore++;
+        itemDetails += `Q${q.id} [Key: ${q.correctKey}] - Selected: ${sel} -> ${status}\n`;
+      });
+
+      const percentage = Math.round((correctScore / quizQuestions.length) * 100);
+      const m = Math.floor(studentData.timeExpendedSec / 60);
+      const s = studentData.timeExpendedSec % 60;
+      const timeStr = `${m}m ${s}s`;
+
+      const bodyText = 
+`OFFICIAL TOUR GUIDING & ETIQUETTE ASSESSMENT RESULTS
+--------------------------------------------------
+Student Full Name : ${studentData.fullName}
+Candidate ID      : ${studentData.studentId}
+Submission Date   : ${new Date().toLocaleString()}
+Time Expended     : ${timeStr} / 16m 00s
+Final Score       : ${correctScore} / 16 (${percentage}%)
+Evaluation Status : ${percentage >= 70 ? "PASSED (COMPETENT)" : "NEEDS RETAKE"}
+
+ITEM-BY-ITEM BREAKDOWN:
+--------------------------------------------------
+${itemDetails}
+
+Teacher Notification Protocol: Sent to ${teacherEmail}`;
+
+      const mailtoUrl = `mailto:${teacherEmail}?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
+      
+      // Open default email client
+      window.location.href = mailtoUrl;
+    }
+
+    /* -----------------------------------------------------------
+     * 13. RESTART ASSESSMENT
+     * ----------------------------------------------------------- */
+    function restartAssessment() {
+      showCustomModal("Retake Assessment", "Are you sure you want to restart? All saved answers will be cleared.", () => {
+        userAnswers = {};
+        currentIndex = 0;
+        totalSecondsRemaining = 16 * 60;
+        studentData.startTime = null;
+        studentData.endTime = null;
+
+        document.getElementById('screen-results').classList.add('hidden');
+        document.getElementById('screen-intro').classList.remove('hidden');
+        document.getElementById('student-name').value = "";
+        document.getElementById('student-id').value = "";
+      }, true);
+    }
+
+    /* -----------------------------------------------------------
+     * 14. CUSTOM MODAL LOGIC (No window.alert or window.confirm)
+     * ----------------------------------------------------------- */
+    let currentModalConfirmCallback = null;
+
+    function showCustomModal(title, message, onConfirm, showCancel = true) {
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-message').innerText = message;
+      currentModalConfirmCallback = onConfirm;
+
+      const cancelBtn = document.getElementById('modal-cancel-btn');
+      if (showCancel) {
+        cancelBtn.classList.remove('hidden');
+      } else {
+        cancelBtn.classList.add('hidden');
+      }
+
+      document.getElementById('custom-modal').classList.remove('hidden');
+    }
+
+    document.getElementById('modal-cancel-btn').addEventListener('click', () => {
+      document.getElementById('custom-modal').classList.add('hidden');
+      currentModalConfirmCallback = null;
+    });
+
+    document.getElementById('modal-confirm-btn').addEventListener('click', () => {
+      document.getElementById('custom-modal').classList.add('hidden');
+      if (typeof currentModalConfirmCallback === 'function') {
+        currentModalConfirmCallback();
+      }
+    });
+  </script>
+</body>
+</html>
